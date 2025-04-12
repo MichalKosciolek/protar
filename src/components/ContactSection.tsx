@@ -1,11 +1,9 @@
 import { useTheme } from "@mui/material/styles";
 
 function ContactSection() {
-  const theme = useTheme();
+    const theme = useTheme();
 
-  return (
-    <>text</>
-  );
+    return <>text</>;
 }
 
 export default ContactSection;

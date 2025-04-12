@@ -1,16 +1,12 @@
-import React from "react";
 import {
-  AppBar,
   Box,
   createTheme,
-  Toolbar,
   Typography,
   Container,
   ThemeOptions,
-  ThemeProvider,
+  ThemeProvider
 } from "@mui/material";
-import Logo from "../assets/protar_logo.svg";
-import NavigationButtons from "./NavigationButtons"
+import MainAppBar from "./MainAppBar"
 
 export const themeOptions: ThemeOptions = {
   palette: {
@@ -19,7 +15,7 @@ export const themeOptions: ThemeOptions = {
       main: "#dee2e6",
     },
     secondary: {
-      main: "#D90429",
+      main: "#a70d15",
     },
     background: {
       default: "#EDF2F4",
@@ -48,23 +44,7 @@ function MainPanel() {
           minHeight: "150vh",
         }}
       >
-        <AppBar position="fixed" color="primary">
-          <Toolbar sx={{ justifyContent: "space-between", paddingX: "16px" }}>
-            <img
-              src={Logo}
-              alt="Logo"
-              style={{
-                height: "65px",
-                width: "auto",
-                marginLeft: "40px",
-                marginRight: "16px",
-                marginTop: "10px",
-                marginBottom: "10px",
-              }}
-            />
-            <NavigationButtons></NavigationButtons>
-          </Toolbar>
-        </AppBar>
+        <MainAppBar></MainAppBar>
         <Container sx={{ mt: 12 }}>
           <Box id="section1" sx={{ minHeight: "100vh", paddingY: 4 }}>
             <Typography variant="h4" color="textPrimary">
@@ -88,6 +68,14 @@ function MainPanel() {
             </Typography>
             <Typography variant="body1" color="textSecondary">
               Content for Section 3 goes here.
+            </Typography>
+          </Box>
+          <Box id="section4" sx={{ minHeight: "100vh", paddingY: 4 }}>
+            <Typography variant="h4" color="textPrimary">
+              Section 4
+            </Typography>
+            <Typography variant="body1" color="textSecondary">
+              Content for Section 4 goes here.
             </Typography>
           </Box>
         </Container>

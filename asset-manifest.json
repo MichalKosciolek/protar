@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/protar/static/css/main.c48d3032.css",
+    "main.js": "/protar/static/js/main.68c02e1a.js",
+    "static/media/tmp.png": "/protar/static/media/tmp.036f5d2f4564ab299280.png",
+    "static/media/protar_logo.svg": "/protar/static/media/protar_logo.3b983ccc57641332ce07948875e5f755.svg",
+    "index.html": "/protar/index.html",
+    "main.c48d3032.css.map": "/protar/static/css/main.c48d3032.css.map",
+    "main.68c02e1a.js.map": "/protar/static/js/main.68c02e1a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c48d3032.css",
+    "static/js/main.68c02e1a.js"
+  ]
+}

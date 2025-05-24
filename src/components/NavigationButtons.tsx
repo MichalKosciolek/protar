@@ -1,27 +1,21 @@
-import { Box, darken, Theme, useTheme } from "@mui/material";
+import { Box } from "@mui/material";
 import SectionButton from "src/shared/ui/SectionButton";
 
 function NavigationButtons() {
-    const theme = useTheme();
-
     return (
-        <Box sx={{ marginRight: "100px" }}>
-            <SectionButton label="STRONA GŁÓWNA" target="mainPageSection" />
-            <SectionButton label="O NAS" target="aboutSection" />
-            <SectionButton label="REALIZACJE" target="projectsSection" />
+        <Box sx={{ display: "flex", gap: "30px" }}>
+            <SectionButton label="O nas" target="/about" />
+            <SectionButton label="Oferta" target="/offer" />
+            <SectionButton label="Realizacje" target="/projects" />
             <SectionButton
-                label="KONTAKT"
-                target="contactSection"
+                label="Kontakt"
+                target="/contact"
                 sx={{
                     backgroundColor: "secondary.main",
                     color: "primary.main",
-                    marginLeft: "20px",
                     "&:hover": {
-                        backgroudColor: darken(
-                            theme.palette.secondary.main,
-                            0.2
-                        )
-                    }
+                        backgroundColor: "secondary.dark",
+                    },
                 }}
             />
         </Box>

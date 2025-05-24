@@ -1,5 +1,5 @@
 import Button from "@mui/material/Button";
-import { Link } from "react-scroll";
+import { Link as RouterLink } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 
 interface SectionButtonProps {
@@ -13,6 +13,8 @@ function SectionButton({ label, target, sx }: SectionButtonProps) {
 
     return (
         <Button
+            component={RouterLink}
+            to={target}
             color="inherit"
             sx={{
                 "&:hover": {
@@ -24,22 +26,7 @@ function SectionButton({ label, target, sx }: SectionButtonProps) {
                 ...sx
             }}
         >
-            <Link
-                to={target}
-                smooth={true}
-                duration={500}
-                spy={true}
-                activeClass="active"
-                offset={-80}
-                style={{
-                    textDecoration: "none",
-                    color: "inherit",
-                    marginRight: "20px",
-                    marginLeft: "20px"
-                }}
-            >
-                {label}
-            </Link>
+            {label}
         </Button>
     );
 }

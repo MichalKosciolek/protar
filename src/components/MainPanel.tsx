@@ -1,13 +1,16 @@
 import {
     Box,
     createTheme,
-    Typography,
-    Container,
     ThemeOptions,
     ThemeProvider
 } from "@mui/material";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainAppBar from "./MainAppBar";
-import MainPageSection from "./MainPageSection";
+import AboutPage from "./pages/AboutPage";
+import OfferPage from "./pages/OfferPage";
+import ProjectsPage from "./pages/ProjectsPage";
+import ContactPage from "./pages/ContactPage";
+import Footer from "./Footer";
 
 export const themeOptions: ThemeOptions = {
     palette: {
@@ -37,55 +40,29 @@ const theme = createTheme(themeOptions);
 function MainPanel() {
     return (
         <ThemeProvider theme={theme}>
-            <Box
-                sx={{
-                    flexGrow: 1,
-                    width: "100%",
-                    bgcolor: "background.default",
-                    minHeight: "150vh"
-                }}
-            >
-                <MainAppBar />
-                <Container>
-                    <MainPageSection
-                        id="mainPageSection"
-                        sx={{ minHeight: "100vh", paddingY: 2 }}
-                    />
-                    <Box
-                        id="aboutSection"
-                        sx={{ minHeight: "100vh", paddingY: 4 }}
-                    >
-                        <Typography variant="h4" color="textPrimary">
-                            O NAS
-                        </Typography>
-                        <Typography variant="body1" color="textSecondary">
-                            Content for Section 2 goes here.
-                        </Typography>
+            <Router>
+                <Box
+                    sx={{
+                        flexGrow: 1,
+                        width: "100%",
+                        bgcolor: "background.default",
+                        minHeight: "150vh",
+                        display: "flex",
+                        flexDirection: "column",
+                    }}
+                >
+                    <MainAppBar />
+                    <Box sx={{ flexGrow: 1 }}>
+                        <Routes>
+                            <Route path="/about" element={<AboutPage />} />
+                            <Route path="/offer" element={<OfferPage />} />
+                            <Route path="/projects" element={<ProjectsPage />} />
+                            <Route path="/contact" element={<ContactPage />} />
+                        </Routes>
                     </Box>
-                    <Box
-                        id="projectsSection"
-                        sx={{ minHeight: "100vh", paddingY: 4 }}
-                    >
-                        <Typography variant="h4" color="textPrimary">
-                            REALIZACJE
-                        </Typography>
-                        <Typography variant="body1" color="textSecondary">
-                            Content for Section 3 goes here.
-                        </Typography>
-                    </Box>
-                    <Box
-                        id="contactSection"
-                        sx={{ minHeight: "100vh", paddingY: 4 }}
-                    >
-                        <Typography variant="h4" color="textPrimary">
-                            KONTAKT
-                        </Typography>
-                        <Typography variant="body1" color="textSecondary">
-                            Content for Section 4 goes here.
-                        </Typography>
-                    </Box>
-                </Container>
-            </Box>
+                    <Footer />
+                </Box>
+            </Router>
         </ThemeProvider>
     );
 }

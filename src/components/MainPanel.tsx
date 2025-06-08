@@ -1,5 +1,10 @@
 import { Box, createTheme, ThemeOptions, ThemeProvider } from "@mui/material";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+    Navigate
+} from "react-router-dom";
 import MainAppBar from "./MainAppBar";
 import AboutPage from "./pages/AboutPage";
 import OfferPage from "./pages/OfferPage";
@@ -49,6 +54,10 @@ function MainPanel() {
                     <MainAppBar />
                     <Box sx={{ flexGrow: 1 }}>
                         <Routes>
+                            <Route
+                                path="/"
+                                element={<Navigate to="/about" replace />}
+                            />
                             <Route path="/about" element={<AboutPage />} />
                             <Route path="/offer" element={<OfferPage />} />
                             <Route

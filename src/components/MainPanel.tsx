@@ -40,7 +40,7 @@ const theme = createTheme(themeOptions);
 function MainPanel() {
     return (
         <ThemeProvider theme={theme}>
-            <Router>
+            <Router basename="/protar">
                 <Box
                     sx={{
                         flexGrow: 1,

@@ -8,10 +8,17 @@ function Footer() {
                 bgcolor: "primary.main",
                 color: "text.primary",
                 padding: 2,
-                textAlign: "center",
+                textAlign: "center"
             }}
         >
-            <Box sx={{ display: "flex", justifyContent: "center", gap: 2, mb: 1 }}>
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: 2,
+                    mb: 1
+                }}
+            >
                 <IconButton
                     component="a"
                     href="https://facebook.com"
@@ -32,7 +39,8 @@ function Footer() {
                 </IconButton>
             </Box>
             <Typography variant="body2">
-                © 2025 PROTAR Sp. z o.o.<br />
+                © 2025 PROTAR Sp. z o.o.
+                <br />
                 Autor strony: Michał Kościółek
             </Typography>
         </Box>

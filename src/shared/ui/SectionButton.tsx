@@ -11,11 +11,16 @@ interface SectionButtonProps {
 function SectionButton({ label, target, sx }: SectionButtonProps) {
     const theme = useTheme();
 
+    const handleClick = () => {
+        window.scrollTo(0, 0);
+    };
+
     return (
         <Button
             component={RouterLink}
             to={target}
             color="inherit"
+            onClick={handleClick}
             sx={{
                 "&:hover": {
                     color: theme.palette.secondary.main

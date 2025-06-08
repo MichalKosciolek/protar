@@ -14,8 +14,8 @@ function NavigationButtons() {
                     backgroundColor: "secondary.main",
                     color: "primary.main",
                     "&:hover": {
-                        backgroundColor: "secondary.dark",
-                    },
+                        backgroundColor: "secondary.dark"
+                    }
                 }}
             />
         </Box>

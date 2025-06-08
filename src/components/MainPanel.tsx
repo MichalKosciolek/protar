@@ -1,9 +1,4 @@
-import {
-    Box,
-    createTheme,
-    ThemeOptions,
-    ThemeProvider
-} from "@mui/material";
+import { Box, createTheme, ThemeOptions, ThemeProvider } from "@mui/material";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainAppBar from "./MainAppBar";
 import AboutPage from "./pages/AboutPage";
@@ -48,7 +43,7 @@ function MainPanel() {
                         bgcolor: "background.default",
                         minHeight: "150vh",
                         display: "flex",
-                        flexDirection: "column",
+                        flexDirection: "column"
                     }}
                 >
                     <MainAppBar />
@@ -56,7 +51,10 @@ function MainPanel() {
                         <Routes>
                             <Route path="/about" element={<AboutPage />} />
                             <Route path="/offer" element={<OfferPage />} />
-                            <Route path="/projects" element={<ProjectsPage />} />
+                            <Route
+                                path="/projects"
+                                element={<ProjectsPage />}
+                            />
                             <Route path="/contact" element={<ContactPage />} />
                         </Routes>
                     </Box>

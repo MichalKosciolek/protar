@@ -18,8 +18,8 @@ const sections = [
             "Roboty wykończeniowe",
             "Roboty instalacyjne",
             "Rozbudowa, przebudowa, adaptacja istniejących obiektów",
-            "Place, parkingi, drogi dojazdowe",
-        ],
+            "Place, parkingi, drogi dojazdowe"
+        ]
     },
     {
         title: "Usługi w elektroenergetyce",
@@ -32,8 +32,8 @@ const sections = [
             "Budowa oświetlenia drogowego",
             "Iluminacje obiektów",
             "Projektowanie branży elektrycznej i elektroenergetycznej",
-            "Kosztorysowanie branży elektrycznej",
-        ],
+            "Kosztorysowanie branży elektrycznej"
+        ]
     },
     {
         title: "Obróbka stali",
@@ -42,8 +42,8 @@ const sections = [
             "Konstrukcje stalowe",
             "Ogrodzenia",
             "Schody, balustrady",
-            "Manufaktura stalowa (elementy na zamówienie)",
-        ],
+            "Manufaktura stalowa (elementy na zamówienie)"
+        ]
     },
     {
         title: "Usługi sprzętowo-transportowe",
@@ -55,9 +55,9 @@ const sections = [
             "Transport materiałów sypkich",
             "Transport naczepą niskopodwoziową",
             "Transport lawetą (pomoc drogowa 9 ton)",
-            "Usługi dźwigowe (18 ton)",
-        ],
-    },
+            "Usługi dźwigowe (18 ton)"
+        ]
+    }
 ];
 
 function OfferPage() {

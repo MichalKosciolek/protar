@@ -6,7 +6,8 @@ import {
     Divider,
     Link,
     Stack,
-    alpha
+    alpha,
+    useMediaQuery
 } from "@mui/material";
 import { ReactNode } from "react";
 import { useTheme } from "@mui/material/styles";
@@ -29,6 +30,7 @@ function ContactCard({
     horizontal = false
 }: ContactCardProps) {
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
     const cardHoverShadow = "rgba(0, 0, 0, 0.2)";
     const dividerColor = alpha(theme.palette.secondary.main, 0.5);
@@ -39,7 +41,7 @@ function ContactCard({
             elevation={2}
             sx={{
                 height: "100%",
-                borderRadius: 2,
+                borderRadius: { xs: 1, md: 2 },
                 bgcolor: theme.palette.background.paper,
                 transition: "transform 0.3s, box-shadow 0.3s",
                 "&:hover": {
@@ -48,7 +50,7 @@ function ContactCard({
                 }
             }}
         >
-            <CardContent sx={{ p: 3, textAlign: "center" }}>
+            <CardContent sx={{ p: { xs: 2, md: 3 }, textAlign: "center" }}>
                 <Box
                     display="flex"
                     alignItems="center"
@@ -59,10 +61,14 @@ function ContactCard({
                         {icon}
                     </Box>
                     <Typography
-                        variant="h5"
+                        variant={isMobile ? "subtitle1" : "h5"}
                         component="h2"
                         color="text.primary"
-                        sx={{ ml: 1, fontWeight: 600 }}
+                        sx={{
+                            ml: 1,
+                            fontWeight: 600,
+                            fontSize: isMobile ? "1.1rem" : undefined
+                        }}
                     >
                         {title}
                     </Typography>
@@ -79,13 +85,17 @@ function ContactCard({
 
                 {horizontal ? (
                     <Stack
-                        direction="row"
-                        spacing={3}
+                        direction={isMobile ? "column" : "row"}
+                        spacing={isMobile ? 2 : 3}
                         justifyContent="center"
-                        divider={<Divider orientation="vertical" flexItem />}
+                        divider={
+                            !isMobile && (
+                                <Divider orientation="vertical" flexItem />
+                            )
+                        }
                         sx={{
                             flexWrap: { xs: "wrap", md: "nowrap" },
-                            gap: 2
+                            gap: isMobile ? 1 : 2
                         }}
                     >
                         {items.map((item, idx) => (
@@ -93,8 +103,8 @@ function ContactCard({
                                 key={idx}
                                 sx={{
                                     textAlign: "center",
-                                    minWidth: "180px",
-                                    px: 2
+                                    minWidth: isMobile ? "auto" : "180px",
+                                    px: { xs: 1, md: 2 }
                                 }}
                             >
                                 <Typography
@@ -102,7 +112,10 @@ function ContactCard({
                                     sx={{
                                         fontWeight: 600,
                                         mb: 1,
-                                        color: theme.palette.text.primary
+                                        color: theme.palette.text.primary,
+                                        fontSize: isMobile
+                                            ? "0.95rem"
+                                            : undefined
                                     }}
                                 >
                                     {item.label}
@@ -112,7 +125,9 @@ function ContactCard({
                                         href={`mailto:${item.value}`}
                                         underline="hover"
                                         sx={{
-                                            fontSize: "1rem",
+                                            fontSize: isMobile
+                                                ? "0.9rem"
+                                                : "1rem",
                                             color: linkColor,
                                             fontWeight: 500,
                                             "&:hover": {
@@ -130,10 +145,16 @@ function ContactCard({
                 ) : (
                     <Box sx={{ textAlign: "center" }}>
                         {items.map((item, idx) => (
-                            <Box key={idx} sx={{ py: 1 }}>
+                            <Box key={idx} sx={{ py: isMobile ? 0.5 : 1 }}>
                                 <Typography
                                     variant="body1"
-                                    sx={{ fontWeight: 500, mb: 1 }}
+                                    sx={{
+                                        fontWeight: 500,
+                                        mb: 1,
+                                        fontSize: isMobile
+                                            ? "0.95rem"
+                                            : undefined
+                                    }}
                                 >
                                     {item.label}
                                 </Typography>
@@ -142,7 +163,9 @@ function ContactCard({
                                         href={`mailto:${item.value}`}
                                         underline="hover"
                                         sx={{
-                                            fontSize: "1rem",
+                                            fontSize: isMobile
+                                                ? "0.9rem"
+                                                : "1rem",
                                             color: linkColor,
                                             fontWeight: 500,
                                             "&:hover": {

@@ -1,13 +1,17 @@
-import { Box, Typography, IconButton } from "@mui/material";
+import { Box, Typography, IconButton, useMediaQuery } from "@mui/material";
 import { Facebook, Instagram } from "@mui/icons-material";
+import { useTheme } from "@mui/material/styles";
 
 function Footer() {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
     return (
         <Box
             sx={{
                 bgcolor: "primary.main",
                 color: "text.primary",
-                padding: 2,
+                padding: isMobile ? 1.5 : 2,
                 textAlign: "center"
             }}
         >
@@ -25,8 +29,9 @@ function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     color="inherit"
+                    size={isMobile ? "small" : "medium"}
                 >
-                    <Facebook />
+                    <Facebook fontSize={isMobile ? "small" : "medium"} />
                 </IconButton>
                 <IconButton
                     component="a"
@@ -34,11 +39,12 @@ function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     color="inherit"
+                    size={isMobile ? "small" : "medium"}
                 >
-                    <Instagram />
+                    <Instagram fontSize={isMobile ? "small" : "medium"} />
                 </IconButton>
             </Box>
-            <Typography variant="body2">
+            <Typography variant={isMobile ? "caption" : "body2"}>
                 © 2025 PROTAR Sp. z o.o.
                 <br />
                 Autor strony: Michał Kościółek

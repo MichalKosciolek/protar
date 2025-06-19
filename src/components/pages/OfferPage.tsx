@@ -1,4 +1,5 @@
-import { Box, Typography, Stack } from "@mui/material";
+import { Box, Typography, Stack, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 import OfferSection from "./OfferSection";
 
@@ -61,9 +62,17 @@ const sections = [
 ];
 
 function OfferPage() {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
     return (
-        <Box sx={{ padding: { xs: 2, md: 6 }, marginTop: "80px" }}>
-            <Stack spacing={4}>
+        <Box
+            sx={{
+                padding: { xs: 1.5, sm: 2, md: 6 },
+                marginTop: { xs: "70px", md: "80px" }
+            }}
+        >
+            <Stack spacing={isMobile ? 2 : 4}>
                 {sections.map((section, idx) => (
                     <OfferSection key={idx} {...section} />
                 ))}

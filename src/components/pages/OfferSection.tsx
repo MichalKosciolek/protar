@@ -8,7 +8,9 @@ import {
     ListItem,
     ListItemIcon,
     ListItemText,
-    Box
+    Box,
+    useMediaQuery,
+    useTheme
 } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
@@ -19,6 +21,9 @@ interface OfferCardProps {
 }
 
 function OfferCard({ title, image, points }: OfferCardProps) {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const isSmallMobile = useMediaQuery(theme.breakpoints.down("sm"));
     const cardHoverShadow = "rgba(0, 0, 0, 0.2)";
 
     return (
@@ -34,13 +39,13 @@ function OfferCard({ title, image, points }: OfferCardProps) {
                 sx={{
                     display: "flex",
                     flexDirection: { xs: "column", md: "row" },
-                    mb: 5,
-                    borderRadius: 4,
+                    mb: { xs: 3, md: 5 },
+                    borderRadius: { xs: 2, md: 4 },
                     overflow: "hidden",
-                    boxShadow: 6,
+                    boxShadow: { xs: 4, md: 6 },
                     bgcolor: "background.paper",
                     transition: "transform 0.3s, box-shadow 0.3s",
-                    maxWidth: { lg: "900px", xl: "1000px" },
+                    maxWidth: { xs: "100%", sm: "95%", md: "700px", lg: "800px", xl: "900px" },
                     width: "100%",
                     mx: "auto",
                     "&:hover": {
@@ -54,17 +59,17 @@ function OfferCard({ title, image, points }: OfferCardProps) {
                     image={image}
                     alt={title}
                     sx={{
-                        width: { xs: "100%", md: 320 },
+                        width: { xs: "100%", md: 260 },
                         height: { xs: 180, md: "auto" },
                         objectFit: "cover"
                     }}
                 />
-                <CardContent sx={{ flex: 1, p: 4 }}>
+                <CardContent sx={{ flex: 1, p: { xs: 2, sm: 3, md: 3 } }}>
                     <Typography
-                        variant="h5"
+                        variant={isSmallMobile ? "h6" : "h5"}
                         color="secondary"
                         gutterBottom
-                        sx={{ fontWeight: 700 }}
+                        sx={{ fontWeight: 700, fontSize: { xs: "1.1rem", sm: "1.3rem", md: "1.4rem", lg: "1.5rem" } }}
                     >
                         {title}
                     </Typography>
@@ -76,13 +81,19 @@ function OfferCard({ title, image, points }: OfferCardProps) {
                             borderColor: "secondary.main"
                         }}
                     />
-                    <List>
+                    <List dense={isSmallMobile} sx={{
+                        "& .MuiListItemText-primary": {
+                            fontSize: { xs: "0.9rem", sm: "1rem", md: "1.05rem", lg: "1.1rem" }
+                        }
+                    }}>
                         {points.map((point, idx) => (
                             <ListItem key={idx} disableGutters>
-                                <ListItemIcon>
-                                    <CheckCircleIcon color="secondary" />
+                                <ListItemIcon sx={{ minWidth: isSmallMobile ? 36 : 48 }}>
+                                    <CheckCircleIcon color="secondary" fontSize={isSmallMobile ? "small" : "medium"} />
                                 </ListItemIcon>
-                                <ListItemText primary={point} />
+                                <ListItemText 
+                                    primary={point} 
+                                />
                             </ListItem>
                         ))}
                     </List>

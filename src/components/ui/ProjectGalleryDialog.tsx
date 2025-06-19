@@ -5,7 +5,9 @@ import {
     DialogContent,
     IconButton,
     ImageList,
-    ImageListItem
+    ImageListItem,
+    useMediaQuery,
+    useTheme
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 
@@ -22,14 +24,24 @@ function ProjectGalleryDialog({
     images,
     title = "Galeria projektu"
 }: ProjectGalleryDialogProps) {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
     return (
-        <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
+        <Dialog
+            open={open}
+            onClose={onClose}
+            maxWidth="md"
+            fullWidth
+            fullScreen={isMobile}
+        >
             <DialogTitle
                 sx={{
                     m: 0,
-                    p: 2,
+                    p: { xs: 1.5, md: 2 },
                     textAlign: "center",
-                    position: "relative"
+                    position: "relative",
+                    fontSize: { xs: "1.25rem", md: "1.5rem" }
                 }}
             >
                 {title}
@@ -47,14 +59,18 @@ function ProjectGalleryDialog({
                 </IconButton>
             </DialogTitle>
             <DialogContent dividers>
-                <ImageList cols={2} gap={16}>
+                <ImageList cols={isMobile ? 1 : 2} gap={isMobile ? 8 : 16}>
                     {images.map((img, index) => (
                         <ImageListItem key={index}>
                             <img
                                 src={img}
                                 alt={`Zdjęcie ${index + 1}`}
                                 loading="lazy"
-                                style={{ borderRadius: "4px" }}
+                                style={{
+                                    borderRadius: "4px",
+                                    width: "100%",
+                                    objectFit: "contain"
+                                }}
                             />
                         </ImageListItem>
                     ))}

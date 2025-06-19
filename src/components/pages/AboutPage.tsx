@@ -1,25 +1,35 @@
-import { Box, Typography, Stack, Button, Card } from "@mui/material";
+import {
+    Box,
+    Typography,
+    Stack,
+    Button,
+    Card,
+    useMediaQuery
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Link as RouterLink } from "react-router-dom";
 import MainPageImage from "../../assets/tmp.png";
 
 function AboutPage() {
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
     return (
         <Box
             sx={{
-                marginTop: "120px",
-                marginLeft: "50px",
-                marginRight: "50px",
+                marginTop: { xs: "80px", md: "120px" },
+                marginLeft: { xs: "16px", sm: "30px", md: "50px" },
+                marginRight: { xs: "16px", sm: "30px", md: "50px" },
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 bgcolor: theme.palette.background.default,
                 position: "relative",
-                height: "90vh",
+                height: { xs: "auto", md: "90vh" },
+                minHeight: { xs: "80vh", md: "auto" },
                 overflow: "hidden",
-                borderRadius: "16px"
+                borderRadius: { xs: "8px", md: "16px" },
+                py: { xs: 4, md: 0 }
             }}
         >
             <Box
@@ -30,12 +40,12 @@ function AboutPage() {
                     position: "absolute",
                     top: "50%",
                     left: "50%",
-                    width: "90%",
-                    height: "90%",
+                    width: "100%",
+                    height: "100%",
                     objectFit: "cover",
                     zIndex: 0,
                     filter: "brightness(0.7)",
-                    borderRadius: "16px",
+                    borderRadius: { xs: "8px", md: "16px" },
                     transform: "translate(-50%, -50%)"
                 }}
             />
@@ -43,19 +53,27 @@ function AboutPage() {
                 sx={{
                     position: "relative",
                     zIndex: 1,
-                    padding: 4,
-                    borderRadius: "16px",
+                    padding: { xs: 2, sm: 3, md: 4 },
+                    borderRadius: { xs: "8px", md: "16px" },
                     backgroundColor: "rgba(0, 0, 0, 0.6)",
                     color: "white",
-                    maxWidth: "800px",
-                    textAlign: "center"
+                    maxWidth: { xs: "100%", md: "800px" },
+                    textAlign: "center",
+                    m: { xs: 2, md: 0 }
                 }}
             >
-                <Stack spacing={4} alignItems="center" justifyContent="center">
-                    <Typography variant="h3" gutterBottom>
+                <Stack
+                    spacing={isMobile ? 2 : 4}
+                    alignItems="center"
+                    justifyContent="center"
+                >
+                    <Typography variant={isMobile ? "h4" : "h3"} gutterBottom>
                         Witamy w PROTAR
                     </Typography>
-                    <Typography variant="body1">
+                    <Typography
+                        variant="body1"
+                        sx={{ fontSize: { xs: "0.9rem", md: "1rem" } }}
+                    >
                         Firma PROTAR spółka z o.o. jako firma ogólnobudowlana
                         powstała w 2022 roku z inicjatywy rodzeństwa Pawła i
                         Piotra Kościółek oraz Agnieszki Staszel. Świadczy usługi
@@ -74,13 +92,18 @@ function AboutPage() {
                     </Typography>
                     <RouterLink
                         to="/offer"
-                        style={{ textDecoration: "none" }}
+                        style={{
+                            textDecoration: "none",
+                            width: isMobile ? "100%" : "auto"
+                        }}
                         onClick={() => window.scrollTo(0, 0)}
                     >
                         <Button
                             variant="contained"
                             color="secondary"
                             size="large"
+                            fullWidth={isMobile}
+                            sx={{ py: { xs: 1.5, md: 1 } }}
                         >
                             Dowiedz się więcej
                         </Button>

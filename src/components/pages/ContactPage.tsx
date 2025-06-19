@@ -1,4 +1,11 @@
-import { Box, Container, Stack, Typography, Paper } from "@mui/material";
+import {
+    Box,
+    Container,
+    Stack,
+    Typography,
+    Paper,
+    useMediaQuery
+} from "@mui/material";
 import {
     Business,
     People,
@@ -7,12 +14,21 @@ import {
     LocationOn
 } from "@mui/icons-material";
 import ContactCard from "../ui/ContactCard";
+import { useTheme } from "@mui/material/styles";
 
 function ContactPage() {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
     const contactSections = [
         {
             title: "Kontakt ogólny",
-            icon: <Business color="secondary" fontSize="large" />,
+            icon: (
+                <Business
+                    color="secondary"
+                    fontSize={isMobile ? "medium" : "large"}
+                />
+            ),
             items: [
                 { label: "Email", value: "biuro@protar.com.pl", isEmail: true }
             ],
@@ -20,7 +36,12 @@ function ContactPage() {
         },
         {
             title: "Zarząd",
-            icon: <People color="secondary" fontSize="large" />,
+            icon: (
+                <People
+                    color="secondary"
+                    fontSize={isMobile ? "medium" : "large"}
+                />
+            ),
             items: [
                 {
                     label: "Paweł Kościółek",
@@ -38,11 +59,18 @@ function ContactPage() {
                     isEmail: true
                 }
             ],
-            horizontal: true
+            horizontal: !isMobile
         },
         {
-            title: "Kierownik Działu Przygotowania Produkcji i Zaopatrzenia",
-            icon: <Engineering color="secondary" fontSize="large" />,
+            title: isMobile
+                ? "Kierownik"
+                : "Kierownik Działu Przygotowania Produkcji i Zaopatrzenia",
+            icon: (
+                <Engineering
+                    color="secondary"
+                    fontSize={isMobile ? "medium" : "large"}
+                />
+            ),
             items: [
                 {
                     label: "Artur Cygan",
@@ -54,7 +82,12 @@ function ContactPage() {
         },
         {
             title: "Księgowość i faktury",
-            icon: <AccountBalance color="secondary" fontSize="large" />,
+            icon: (
+                <AccountBalance
+                    color="secondary"
+                    fontSize={isMobile ? "medium" : "large"}
+                />
+            ),
             items: [
                 {
                     label: "Księgowość",
@@ -67,18 +100,26 @@ function ContactPage() {
                     isEmail: true
                 }
             ],
-            horizontal: true
+            horizontal: !isMobile
         }
     ];
 
     return (
-        <Box sx={{ padding: { xs: 2, md: 6 }, marginTop: "80px" }}>
+        <Box
+            sx={{
+                padding: { xs: 1.5, sm: 2, md: 6 },
+                marginTop: { xs: "70px", md: "80px" }
+            }}
+        >
             <Container maxWidth="lg">
-                <Stack spacing={4} direction="column" alignItems="center">
+                <Stack spacing={3} direction="column" alignItems="center">
                     {contactSections.map((section, idx) => (
                         <Box
                             key={idx}
-                            sx={{ width: { xs: "100%", md: "70%" }, mb: 2 }}
+                            sx={{
+                                width: { xs: "100%", md: "70%" },
+                                mb: { xs: 1, md: 2 }
+                            }}
                         >
                             <ContactCard
                                 title={section.title}
@@ -89,12 +130,16 @@ function ContactPage() {
                         </Box>
                     ))}
 
-                    {/* Google Map Card */}
-                    <Box sx={{ width: { xs: "100%", md: "70%" }, mb: 2 }}>
+                    <Box
+                        sx={{
+                            width: { xs: "100%", md: "70%" },
+                            mb: { xs: 1, md: 2 }
+                        }}
+                    >
                         <Paper
                             elevation={3}
                             sx={{
-                                p: 3,
+                                p: { xs: 2, md: 3 },
                                 borderRadius: 2,
                                 overflow: "hidden"
                             }}
@@ -109,17 +154,20 @@ function ContactPage() {
                             >
                                 <LocationOn
                                     color="secondary"
-                                    fontSize="large"
+                                    fontSize={isMobile ? "medium" : "large"}
                                     sx={{ mr: 1 }}
                                 />
-                                <Typography variant="h5" component="h2">
+                                <Typography
+                                    variant={isMobile ? "h6" : "h5"}
+                                    component="h2"
+                                >
                                     Nasza lokalizacja
                                 </Typography>
                             </Box>
                             <Box
                                 sx={{
                                     width: "100%",
-                                    height: "400px",
+                                    height: { xs: "300px", md: "400px" },
                                     borderRadius: 1,
                                     overflow: "hidden"
                                 }}
@@ -135,7 +183,12 @@ function ContactPage() {
                                     title="Lokalizacja firmy"
                                 ></iframe>
                             </Box>
-                            <Typography sx={{ mt: 2 }}>
+                            <Typography
+                                sx={{
+                                    mt: 2,
+                                    fontSize: { xs: "0.9rem", md: "1rem" }
+                                }}
+                            >
                                 PROTAR Sp. z o.o., ul. Brzozowa 4a, 33-100
                                 Tarnów
                             </Typography>

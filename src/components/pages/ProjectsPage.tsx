@@ -4,7 +4,8 @@ import {
     Container,
     Button,
     Divider,
-    alpha
+    alpha,
+    useMediaQuery
 } from "@mui/material";
 import {
     CheckCircle,
@@ -127,15 +128,20 @@ const getCategoryLabel = (category: string) => {
 function ProjectsPage() {
     const theme = useTheme();
     const dividerColor = alpha(theme.palette.secondary.main, 0.7);
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
     return (
         <Box
-            sx={{ paddingY: 6, paddingX: { xs: 2, md: 6 }, marginTop: "80px" }}
+            sx={{
+                paddingY: { xs: 4, md: 6 },
+                paddingX: { xs: 1.5, sm: 2, md: 6 },
+                marginTop: { xs: "70px", md: "80px" }
+            }}
         >
             <Container maxWidth="lg">
-                <Box textAlign="center" mb={6}>
+                <Box textAlign="center" mb={{ xs: 4, md: 6 }}>
                     <Typography
-                        variant="h3"
+                        variant={isMobile ? "h4" : "h3"}
                         color="text.primary"
                         gutterBottom
                         sx={{ fontWeight: 600 }}
@@ -182,6 +188,7 @@ function ProjectsPage() {
                         variant="contained"
                         color="secondary"
                         size="large"
+                        fullWidth={isMobile}
                         onClick={() => {
                             window.scrollTo(0, 0);
                         }}
@@ -189,8 +196,8 @@ function ProjectsPage() {
                             mt: { xs: 2, sm: 3 },
                             fontWeight: 600,
                             px: { xs: 3, md: 4 },
-                            py: { xs: 1.2, md: 1.5 },
-                            minWidth: { xs: "80%", sm: "auto" } // Wider touch target on mobile
+                            py: { xs: 1.5, md: 1.5 },
+                            minWidth: { xs: "100%", sm: "auto" }
                         }}
                     >
                         Skontaktuj się z nami
